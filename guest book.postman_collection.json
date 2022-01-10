@@ -1,0 +1,302 @@
+{
+	"info": {
+		"_postman_id": "28ab4cab-8b5d-4a64-bb2a-5a1c315fe804",
+		"name": "guest book",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "register",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"name\" : \"Вадиm\",\r\n    \"email\" : \"qwe@newq.com\",\r\n    \"password\" : \"test1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://guestbook.loc/api/register",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "login",
+			"request": {
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"email\" : \"qwe@newq.com\",\r\n    \"password\" : \"test1234\"\r\n}"
+				},
+				"url": {
+					"raw": "http://guestbook.loc/api/login",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "2|eWllSmMwNGXXenbGESVlV7yFpwfL6MTNlqpPBApp",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://guestbook.loc/api/user",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"user"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "guest_book_answer store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|s0D4gAEFSXMIHIyk9TgHG6y2vZOUUijiJ2vhaWcc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"Ответ на отзыв!\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://guestbook.loc/api/guest_book_items/3/answer",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"guest_book_items",
+						"3",
+						"answer"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "guest_book_items store",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|s0D4gAEFSXMIHIyk9TgHG6y2vZOUUijiJ2vhaWcc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [
+					{
+						"key": "Accept",
+						"value": "application/json",
+						"type": "default"
+					},
+					{
+						"key": "Content-Type",
+						"value": "application/json",
+						"type": "default"
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "{\r\n    \"content\" : \"ert у tert ert ertrtertrtr\"\r\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "http://guestbook.loc/api/guest_book_items",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"guest_book_items"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "guest_book_items show",
+			"request": {
+				"auth": {
+					"type": "noauth"
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://guestbook.loc/api/guest_book_items/1",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"guest_book_items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "guest_book_items index",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|s0D4gAEFSXMIHIyk9TgHG6y2vZOUUijiJ2vhaWcc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "http://guestbook.loc/api/guest_book_items?limit=2",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"guest_book_items"
+					],
+					"query": [
+						{
+							"key": "limit",
+							"value": "2"
+						}
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "guest_book_items delete",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "6|s0D4gAEFSXMIHIyk9TgHG6y2vZOUUijiJ2vhaWcc",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "http://guestbook.loc/api/guest_book_items/1",
+					"protocol": "http",
+					"host": [
+						"guestbook",
+						"loc"
+					],
+					"path": [
+						"api",
+						"guest_book_items",
+						"1"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
