@@ -4,7 +4,9 @@
 namespace App\Http\Controllers;
 
 
+use App\Http\Requests\GuestBookAnswerRequest;
 use App\Http\Requests\GuestBookItemRequest;
+use App\Http\Resources\GuestBookAnswerResource;
 use App\Http\Resources\GuestBookItemResource;
 use App\Models\GuestBookItem;
 use App\Models\User;
@@ -14,6 +16,7 @@ use Illuminate\Http\Request;
 class GuestBookController extends Controller
 {
     private const DENIED_ERROR = 'You have no necessary permissions!';
+    private const NOT_ADMIN_ERROR = 'Admins only can use this method';
 
     public function __construct()
     {
@@ -25,6 +28,7 @@ class GuestBookController extends Controller
     public function index(Request $request)
     {
         $guestBookItemsCollection = GuestBookItem::query()
+            ->with('answers')
             ->latest('id')
             ->limit($request->get('limit'))
             ->offset($request->get('offset', 0))
@@ -67,5 +71,19 @@ class GuestBookController extends Controller
         );
 
         $guestBookItem->delete();
+    }
+
+    public function storeAnswer(GuestBookAnswerRequest $request, GuestBookItem $guestBookItem): GuestBookAnswerResource
+    {
+        abort_unless(auth()->user()->is_admin, 403, self::NOT_ADMIN_ERROR);
+
+        $guestBookItem = $guestBookItem->answers()->create([
+            'content' => $request->get('content'),
+            'user_id' => auth()->id(),
+        ]);
+
+        // TODO send notification to private channel
+
+        return new GuestBookAnswerResource($guestBookItem);
     }
 }

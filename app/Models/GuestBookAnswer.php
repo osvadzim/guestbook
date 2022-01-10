@@ -4,10 +4,11 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Model;
 
-class GuestBookItem extends Model
+class GuestBookAnswer extends Model
 {
     protected $fillable = [
         'content',
+        'user_id',
     ];
 
     public function user()
@@ -15,8 +16,8 @@ class GuestBookItem extends Model
         return $this->belongsTo(User::class);
     }
 
-    public function answers()
+    public function guestBookItem()
     {
-        return $this->hasMany(GuestBookAnswer::class);
+        return $this->belongsTo(GuestBookItem::class);
     }
 }

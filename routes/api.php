@@ -24,8 +24,5 @@ Route::post('register', [AuthController::class, 'register']);
 Route::post('login', [AuthController::class, 'login']);
 
 Route::apiResource('guest_book_items', GuestBookController::class);
+Route::post('guest_book_items/{guest_book_item}/answer', [GuestBookController::class, 'storeAnswer']);
 
-//Route::middleware('auth:sanctum')->group(function () {
-//    Route::get('/', []);
-//
-//});

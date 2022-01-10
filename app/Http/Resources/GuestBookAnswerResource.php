@@ -4,7 +4,7 @@ namespace App\Http\Resources;
 
 use Illuminate\Http\Resources\Json\JsonResource;
 
-class GuestBookItemResource extends JsonResource
+class GuestBookAnswerResource extends JsonResource
 {
     /**
      * Transform the resource into an array.
@@ -21,7 +21,6 @@ class GuestBookItemResource extends JsonResource
             'updated_at' => $this->updated_at->format('Y-m-d H:i:s'),
 
             'user' => new UserResource($this->whenLoaded('user')),
-            'answers' => GuestBookAnswerResource::collection($this->whenLoaded('answers')),
         ];
     }
 }
